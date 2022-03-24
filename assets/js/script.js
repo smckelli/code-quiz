@@ -92,8 +92,6 @@ var questionArr = [
 
 ];
 
-
-
 var timerEl = document.getElementById("timer")
 
 function startTimer() {

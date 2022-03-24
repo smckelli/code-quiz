@@ -1,4 +1,11 @@
-
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
+    background-color: lightblue;
+    color:black; 
+}
 
 header {
     font-size:32px;
@@ -6,3 +13,31 @@ header {
     justify-content: space-between;
     margin: 8px 15px;
 }
+
+h2 {
+    font-size: 32px;
+    margin:100px 20vw 0 20vw;
+    text-align: center;
+}
+
+button {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    padding: 15px 15px;
+    margin: 35px 20vw 0 35vw;
+    background-color:  #3B7080;
+    width: 25vw;
+}
+
+button:hover {
+    background-color: #80475E;
+    color: white;
+    border-radius: 50px 50px 50px 50px;
+}
+
+/* .submit-btn {
+    margin: 0 8px;
+    width: auto;
+    padding: 2px 10px;
+} */
