@@ -1,14 +1,21 @@
-// global variables
-var startTime = 30;
-var time = startTime;
-var timer = getElementById("timer");
 
-// functions
-    // timer function
+var startTime = 30
+var time = startTime
+var intervalId
 
-setInterval(function() {
-    time--
-    console.log(timer)
-    timer.innerText = time
-}, 1000)
-// question array
+console.log(startTime);
+
+
+
+var timerEl = document.getElementById("timer")
+
+function startTimer() {
+    console.log('Starting timer...')
+
+    setInterval(function() {
+        time--
+        timerEl.innerText= time
+    }, 1000)
+}
+
+startTimer()
