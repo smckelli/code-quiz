@@ -1,14 +1,17 @@
-// var quizWrapper = document.querySelector("#content-wrapper")
-var askQuestion = document.querySelector("#ask-question")
-var startButton = document.getElementById("game-start")
-var answers = document.querySelector("#answers")
-var startTime = 60
-var time = startTime
-var intervalId
-var timer = document.getElementById("timer")
-var questCount = 0
+var quizWrapper = document.querySelector("#content-wrapper");
+var askQuestion = document.querySelector("#ask-question");
+var startButton = document.getElementById("game-start");
 var result = document.createElement("div");
 result.setAttribute("class", "answer-result");
+var answers = document.querySelector("#answers");
+var footer = document.querySelector("#footer");
+var startTime = 60;
+var time = startTime;
+var intervalId;
+var timer = document.getElementById("timer");
+timer.innerText = time;
+var questCount = 0;
+
 
 // The quiz questions were obtained from the W3 Schools JavaScript Quiz.
 
@@ -98,6 +101,8 @@ var questArr = [{
 
 ];
 
+// function for the inner workings of the quiz
+
 var checkAnswer = function (event) {
     var answerClick = event.target.innerText;
     if (answerClick === questArr[questCount].rightAnswer) {
@@ -123,6 +128,13 @@ var checkAnswer = function (event) {
     }
     getQuest();
     footer.appendChild(result);
+};
+
+var clearQuiz = function() {
+    askQuestion.innerHTML = "";
+    while (answers.firstChild) {
+        answers.removeChild(answers.firstChild);
+    };
 };
 
 var getQuest = function () {
@@ -152,6 +164,7 @@ var getQuest = function () {
 
 var startQuiz = function (event) {
     event.target.remove();
+    answers.classList.remove("text-center");
     intervalId = setInterval(function () {
         time--
         timer.innerText = time

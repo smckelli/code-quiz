@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Code Quiz</title>
+    <title>Code Quiz</title>
     <link rel = "stylesheet" href = "./assets/css/style.css">
 </head>
 <body>
@@ -13,11 +13,14 @@
         <div>
             <strong>Time: <span id = "timer">60</span></strong>
         </div>
-        <h1 id = "ask-question">JavaScript Code Quiz<h1>
+        
     </header>
-    <main id = "content-wrapper">
+    <main id = "content-wrapper" class = "content-wrapper text-center">
+        <h1 id = "ask-question" class = "ask-question">JavaScript Code Quiz</h1>
+        <div id = "answers" class = "answers text-center">
         <!-- questions -->
-        <h2 id = "answers">Welcome to the JavaScript Code Quiz! You have 30 seconds to complete 10 questions. For every question you get correct, 5 seconds will be added to your time. Wrong answers will deduct 5 seconds. Are you up to the challenge?</h2>
+        Welcome to the JavaScript Code Quiz! You have 30 seconds to complete 10 questions. For every question you get correct, 5 seconds will be added to your time. Wrong answers will deduct 5 seconds. Are you up to the challenge?
+        </div>
         <footer>
         <!-- start button -->
         <button id = "game-start">Let's Go!</button>
