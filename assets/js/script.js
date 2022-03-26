@@ -1,21 +1,25 @@
-
-var startTime = 30
+var startButton = document.getElementById("game-start")
+var answers = document.querySelector("#answers")
+var startTime = 60
 var time = startTime
 var intervalId
+var timerEl = document.getElementById("timer")
+var questCount = 0
+var result = document.createElement("div");
+result.setAttribute("class", "answer-result");
 
 // The quiz questions were obtained from the W3 Schools JavaScript Quiz.
 
 // W3 Schools. 1999-2022. JavaScript Quiz. https://www.w3schools.com/quiztest/quiztest.asp?qtest=JS
 
 
-var questionArr = [
-    {
+var questArr = [{
         question: "Inside which HTML element do we put the JavaScript?",
         choiceA: "<js>",
         choiceB: "<script>",
         choiceC: "<scripting>",
         choiceD: "<javascript>",
-        correctAnswer: "<script>"
+        rightAnswer: "<script>"
     },
     {
         question: "Where is the correct place to insert a JavaScript?",
@@ -23,7 +27,7 @@ var questionArr = [
         choiceB: "The <head> section",
         choiceC: "The <footer> section",
         choiceD: "Both A and B are correct",
-        correctAnswer: "Both A and B are correct"
+        rightAnswer: "Both A and B are correct"
     },
     {
         question: "How do you write 'Hello World' in an alert box?",
@@ -31,7 +35,7 @@ var questionArr = [
         choiceB: "alert('Hello World');",
         choiceC: "msgBox('Hello World');",
         choiceD: "alertBox('Hello World');",
-        correctAnswer: "alert('Hello World');"
+        rightAnswer: "alert('Hello World');"
     },
     {
         question: "How do you create a function in JavaScript?",
@@ -39,7 +43,7 @@ var questionArr = [
         choiceB: "abracaFunction()",
         choiceC: "function = myFunction()",
         choiceD: "function:myFunction()",
-        correctAnswer: "function myFunction()"
+        rightAnswer: "function myFunction()"
     },
     {
         question: "How do you call a function named 'myFunction'?",
@@ -47,7 +51,7 @@ var questionArr = [
         choiceB: "abracaFunction()",
         choiceC: "myFunction()",
         choiceD: "call function myFunction()",
-        correctAnswer: "myFunction()"
+        rightAnswer: "myFunction()"
     },
     {
         question: "How can you add a comment in a JavaScript?",
@@ -55,7 +59,7 @@ var questionArr = [
         choiceB: "//This is a comment",
         choiceC: "**This is a comment",
         choiceD: "<!--This is a comment-->",
-        correctAnswer: "//This is a comment"
+        rightAnswer: "//This is a comment"
     },
     {
         question: "What is the correct way to write a JavaScript array?",
@@ -63,7 +67,7 @@ var questionArr = [
         choiceB: "var colors= (1:'red', 2:'green', 3:'blue')",
         choiceC: "var colors = 'red', 'green', 'blue'",
         choiceD: "var colors = 1= ('red'), 2 = ('green'), 3 = ('blue')",
-        correctAnswer: "var colors = ['red', 'green', 'blue']"
+        rightAnswer: "var colors = ['red', 'green', 'blue']"
     },
     {
         question: "How do you declare a JavaScript variable?",
@@ -71,7 +75,7 @@ var questionArr = [
         choiceB: "variable carName;",
         choiceC: "abracarName;'",
         choiceD: "var carName;",
-        correctAnswer: "var carName;"
+        rightAnswer: "var carName;"
     },
     {
         question: "Which operator is used to assign a value to a variable?",
@@ -79,7 +83,7 @@ var questionArr = [
         choiceB: "=",
         choiceC: "X",
         choiceD: "*",
-        correctAnswer: "="
+        rightAnswer: "="
     },
     {
         question: "What will the following code return: Boolean(10>9)",
@@ -87,20 +91,60 @@ var questionArr = [
         choiceB: "true",
         choiceC: "false",
         choiceD: "404 not found",
-        correctAnswer: "true"
+        rightAnswer: "true"
     },
 
 ];
 
-var timerEl = document.getElementById("timer")
+var checkAnswer = function (event) {
+        var answerClick = event.target.innerText;
+        if (answerClick === questArr[questCount].rightAnswer) {
+            result.innerText = "Correct!";
+            time += 10;
+        } else {
+            result.innerText = "Sorry! Wrong answer";
+            time -= 10;
+            if (time <= 0) {
+                time = 0
+                timerEl.innerText = time;
+                return;
+            }
+        }
 
-function startTimer() {
-    console.log('Starting timer...')
 
-    setInterval(function() {
-        time--
-        timerEl.innerText= time
-    }, 1000)
-}
+        var getQuest = function () {
+            question.innerText = questArr[questCount].question;
 
-startTimer()
+            var btnA = document.createElement("button");
+            var btnB = document.createElement("button");
+            var btnC = document.createElement("button");
+            var btnD = document.createElement("button");
+
+            btnA.innerText = questArr[questCount].choiceA;
+            btnB.innerText = questArr[questCount].choiceB;
+            btnC.innerText = questArr[questCount].choiceC;
+            btnD.innerText = questArr[questCount].choiceD;
+
+            btnA.addEventListener("click", checkAnswer);
+            btnB.addEventListener("click", checkAnswer);
+            btnC.addEventListener("click", checkAnswer);
+            btnD.addEventListener("click", checkAnswer);
+        }
+
+
+
+        var startQuiz = function(event) {
+            event.target.remove();
+            setInterval(function () {
+                time--
+                timerEl.innerText = time
+                if(time === 0) {
+                    endQuiz();
+                }
+            }, 1000);
+            clearQuiz();
+            getQuest();
+        }
+    };
+
+    startButton.addEventListener("click", startQuiz);
