@@ -1,9 +1,11 @@
+// var quizWrapper = document.querySelector("#content-wrapper")
+var askQuestion = document.querySelector("#ask-question")
 var startButton = document.getElementById("game-start")
 var answers = document.querySelector("#answers")
 var startTime = 60
 var time = startTime
 var intervalId
-var timerEl = document.getElementById("timer")
+var timer = document.getElementById("timer")
 var questCount = 0
 var result = document.createElement("div");
 result.setAttribute("class", "answer-result");
@@ -97,54 +99,69 @@ var questArr = [{
 ];
 
 var checkAnswer = function (event) {
-        var answerClick = event.target.innerText;
-        if (answerClick === questArr[questCount].rightAnswer) {
-            result.innerText = "Correct!";
-            time += 10;
-        } else {
-            result.innerText = "Sorry! Wrong answer";
-            time -= 10;
-            if (time <= 0) {
-                time = 0
-                timerEl.innerText = time;
-                return;
+    var answerClick = event.target.innerText;
+    if (answerClick === questArr[questCount].rightAnswer) {
+        result.innerText = "Correct!";
+        time += 10;
+    } 
+    else {
+        result.innerText = "Sorry! Wrong answer";
+        time -= 10;
+        if (time <= 0) {
+            time = 0
+            timer.innerText = time;
+            endGame();
+            return;
+        }
+    }
+
+    questCount++
+    clearQuiz();
+    if (questArr.length <= questCount) {
+        endGame();
+        return;
+    }
+    getQuest();
+    footer.appendChild(result);
+};
+
+var getQuest = function () {
+    askQuestion.innerText = questArr[questCount].question;
+
+    var btnA = document.createElement("button");
+    var btnB = document.createElement("button");
+    var btnC = document.createElement("button");
+    var btnD = document.createElement("button");
+
+    btnA.innerText = questArr[questCount].choiceA;
+    btnB.innerText = questArr[questCount].choiceB;
+    btnC.innerText = questArr[questCount].choiceC;
+    btnD.innerText = questArr[questCount].choiceD;
+
+    btnA.addEventListener("click", checkAnswer);
+    btnB.addEventListener("click", checkAnswer);
+    btnC.addEventListener("click", checkAnswer);
+    btnD.addEventListener("click", checkAnswer);
+
+    answers.appendChild(btnA);
+    answers.appendChild(btnB);
+    answers.appendChild(btnC);
+    answers.appendChild(btnD);
+};
+
+
+var startQuiz = function (event) {
+    event.target.remove();
+    intervalId = setInterval(function () {
+        time--
+        timer.innerText = time
+        if (time === 0) {
+            endQuiz();
             }
-        }
+        }, 1000);
 
-
-        var getQuest = function () {
-            question.innerText = questArr[questCount].question;
-
-            var btnA = document.createElement("button");
-            var btnB = document.createElement("button");
-            var btnC = document.createElement("button");
-            var btnD = document.createElement("button");
-
-            btnA.innerText = questArr[questCount].choiceA;
-            btnB.innerText = questArr[questCount].choiceB;
-            btnC.innerText = questArr[questCount].choiceC;
-            btnD.innerText = questArr[questCount].choiceD;
-
-            btnA.addEventListener("click", checkAnswer);
-            btnB.addEventListener("click", checkAnswer);
-            btnC.addEventListener("click", checkAnswer);
-            btnD.addEventListener("click", checkAnswer);
-        }
-
-
-
-        var startQuiz = function(event) {
-            event.target.remove();
-            setInterval(function () {
-                time--
-                timerEl.innerText = time
-                if(time === 0) {
-                    endQuiz();
-                }
-            }, 1000);
-            clearQuiz();
-            getQuest();
-        }
+        clearQuiz();
+        getQuest();
     };
 
-    startButton.addEventListener("click", startQuiz);
+startButton.addEventListener("click", startQuiz);

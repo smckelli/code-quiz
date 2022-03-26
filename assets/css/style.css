@@ -36,6 +36,14 @@ button:hover {
     border-radius: 50px 50px 50px 50px;
 }
 
+/* .content-wrapper {
+    margin: 10vh auto;
+    padding: 20 px 20px;
+    border: 2px #80475E;
+    width: 60vw;
+    box-shadow: 10px 5px 5px black;
+} */
+
 /* .submit-btn {
     margin: 0 8px;
     width: auto;
