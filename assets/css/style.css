@@ -8,15 +8,24 @@
 }
 
 header {
-    font-size:32px;
+    font-size: 32px;
     display: flex;
     justify-content: space-between;
     margin: 8px 15px;
 }
 
+nav {
+    align-items: center;
+    padding: 30px 30px;
+}
+
+a {
+    margin: 0 0 0 35vw;
+}
+
 .answers {
     font-size: 32px;
-    margin:100px 20vw 0 20vw;
+    margin:100px 10vw 0 10vw;
     text-align: center;
 }
 
@@ -25,7 +34,7 @@ button {
     font-weight: bold;
     text-align: center;
     padding: 15px 15px;
-    margin: 35px;
+    margin: 25px;
     background-color:  #3B7080;
     width: 25vw;
 }
@@ -36,10 +45,9 @@ button:hover {
     border-radius: 50px 50px 50px 50px;
 }
 
-.content-wrapper {
+.wrapper {
     margin: 10vh auto;
     padding: 20 px 20px;
-    border: 2px #80475E;
     width: 60vw;
 }
 
@@ -49,6 +57,25 @@ button:hover {
 
 h1 {
     font-size: 48px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.answer-display {
+    text-align: center;
+    border-top: thick double #80475E;
+    color:#80475E;
+    font-weight: 750;
+    font-size: 32px;
+    padding: 12px 10px;
+}
+
+.highscore {
+    margin: 10vh auto 0 40vw;
+    padding: 20 px 20px;
+    width: 60vw;
 }
 /* .submit-btn {
     margin: 0 8px;

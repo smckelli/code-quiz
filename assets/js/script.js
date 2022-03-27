@@ -1,8 +1,8 @@
-var quizWrapper = document.querySelector("#content-wrapper");
+var quizWrapper = document.querySelector("#wrapper");
 var askQuestion = document.querySelector("#ask-question");
 var startButton = document.getElementById("game-start");
 var result = document.createElement("div");
-result.setAttribute("class", "answer-result");
+result.setAttribute("class", "answer-display");
 var answers = document.querySelector("#answers");
 var footer = document.querySelector("#footer");
 var startTime = 60;
@@ -103,14 +103,21 @@ var questArr = [{
 
 // function for the inner workings of the quiz
 
+var endGame = function () {
+    clearInterval(intervalId);
+    clearQuiz();
+    askQuestion.innerText = "All Done!";
+    result.innerText = "Your score is " + time;
+}
+
 var checkAnswer = function (event) {
     var answerClick = event.target.innerText;
     if (answerClick === questArr[questCount].rightAnswer) {
-        result.innerText = "Correct!";
+        result.innerText = "Correct! 😎";
         time += 10;
     } 
     else {
-        result.innerText = "Sorry! Wrong answer";
+        result.innerText = "Sorry! Wrong answer 😒";
         time -= 10;
         if (time <= 0) {
             time = 0

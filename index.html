@@ -10,18 +10,19 @@
 <body>
     <header>
         <!-- timer -->
-        <div>
+        <nav>
             <strong>Time: <span id = "timer">60</span></strong>
-        </div>
+            <a href="highscore.html">🏆 The G.O.A.T 🥇</a>
+        </nav>
         
     </header>
-    <main id = "content-wrapper" class = "content-wrapper text-center">
-        <h1 id = "ask-question" class = "ask-question">JavaScript Code Quiz</h1>
+    <main id = "wrapper" class = "wrapper text-center">
+        <h1 id = "ask-question">JavaScript Code Quiz</h1>
         <div id = "answers" class = "answers text-center">
         <!-- questions -->
         Welcome to the JavaScript Code Quiz! You have 30 seconds to complete 10 questions. For every question you get correct, 5 seconds will be added to your time. Wrong answers will deduct 5 seconds. Are you up to the challenge?
         </div>
-        <footer>
+        <footer id = "footer" class = "text-center">
         <!-- start button -->
         <button id = "game-start">Let's Go!</button>
         </footer>
