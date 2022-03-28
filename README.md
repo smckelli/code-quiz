@@ -20,7 +20,7 @@ THEN I can save my initials and score
 
 # screenshot
 
-![image](./images/code-quiz-screenshot.jpg)
+![image](./assets/images/code-quiz-screenshot.jpg)
 
 # active url
 
