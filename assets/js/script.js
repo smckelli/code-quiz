@@ -5,6 +5,8 @@ var result = document.createElement("div");
 result.setAttribute("class", "answer-display");
 var answers = document.querySelector("#answers");
 var footer = document.querySelector("#footer");
+var initials = document.getElementById("initials");
+
 var startTime = 60;
 var time = startTime;
 var intervalId;
@@ -103,12 +105,35 @@ var questArr = [{
 
 // function for the inner workings of the quiz
 
-var endGame = function () {
+var gameOver = function () {
     clearInterval(intervalId);
     clearQuiz();
     askQuestion.innerText = "All Done!";
     result.innerText = "Your score is " + time;
-}
+
+    var initials = prompt("What are your initials?");
+    console.log(time);
+    var champ = {'initals': initials , 'time': time };
+    // if (champ) {
+        localStorage.setItem('quizGoat', JSON.stringify(champ));
+    //     location.assign("highscore.html");
+    //     return;
+    // }
+
+    // champ = JSON.parse(champ);
+    // console.log(champ);
+    // champ.initials.push(initials);
+    // champ.score.push(time);
+    // console.log(initials, time, champ);
+
+    // localStorage.setItem("quizGoat", JSON.stringify(champ));
+    // location.assign("highscore.html");
+
+    var playAgain = confirm("Want to play again?");
+    if (playAgain) {
+        window.location.reload();
+    }
+};
 
 var checkAnswer = function (event) {
     var answerClick = event.target.innerText;
@@ -122,7 +147,7 @@ var checkAnswer = function (event) {
         if (time <= 0) {
             time = 0
             timer.innerText = time;
-            endGame();
+            gameOver();
             return;
         }
     }
@@ -130,7 +155,7 @@ var checkAnswer = function (event) {
     questCount++
     clearQuiz();
     if (questArr.length <= questCount) {
-        endGame();
+        gameOver();
         return;
     }
     getQuest();
